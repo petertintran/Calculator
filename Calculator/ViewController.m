@@ -27,6 +27,8 @@ bool stateMultiply = false;
 bool stateDivide = false;
 bool stateReadyCalc = false;
 
+bool multCalc = false;
+
 
 
 
@@ -97,11 +99,16 @@ bool stateReadyCalc = false;
         storedValue = storedValue + currentValue;
         currentValue = 0;
         _calcDisplay.text = [NSString stringWithFormat:@"%.0f", storedValue];
+        multCalc = true;
     }
     else
     {
         statePlus = true;
-        storedValue = currentValue;
+        stateMinus = stateMultiply = stateDivide = false;
+        if(multCalc == false)
+        {
+            storedValue = currentValue;
+        }
         currentValue = 0;
         stateReadyCalc = true;
     }
@@ -109,13 +116,70 @@ bool stateReadyCalc = false;
 }
 
 - (IBAction)buttonMinus:(id)sender
-{}
+{
+    if(stateMinus == true && stateReadyCalc == true)
+    {
+        storedValue = storedValue - currentValue;
+        currentValue = 0;
+        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", storedValue];
+        multCalc = true;
+    }
+    else
+    {
+        stateMinus = true;
+        statePlus = stateMultiply = stateDivide = false;
+        if(multCalc == false)
+        {
+            storedValue = currentValue;
+        }
+        currentValue = 0;
+        stateReadyCalc = true;
+    }
+}
 
 - (IBAction)buttonMultiply:(id)sender
-{}
+{
+    if(stateMultiply == true && stateReadyCalc == true)
+    {
+        storedValue = storedValue * currentValue;
+        currentValue = 0;
+        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", storedValue];
+        multCalc = true;
+    }
+    else
+    {
+        stateMultiply = true;
+        statePlus = stateMinus = stateDivide = false;
+        if(multCalc == false)
+        {
+            storedValue = currentValue;
+        }
+        currentValue = 0;
+        stateReadyCalc = true;
+    }
+}
 
 - (IBAction)buttonDivide:(id)sender
-{}
+{
+    if(stateDivide == true && stateReadyCalc == true)
+    {
+        storedValue = storedValue / currentValue;
+        currentValue = 0;
+        _calcDisplay.text = [NSString stringWithFormat:@"%f", storedValue];
+        multCalc = true;
+    }
+    else
+    {
+        stateDivide = true;
+        statePlus = stateMinus = stateMultiply = false;
+        if(multCalc == false)
+        {
+            storedValue = currentValue;
+        }
+        currentValue = 0;
+        stateReadyCalc = true;
+    }
+}
 
 - (IBAction)buttonEqual:(id)sender
 {}
