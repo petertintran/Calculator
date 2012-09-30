@@ -21,6 +21,7 @@
 		CE0559141608D5EA00EB1960 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0558F21608D5EA00EB1960 /* Foundation.framework */; };
 		CE05591C1608D5EB00EB1960 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE05591A1608D5EB00EB1960 /* InfoPlist.strings */; };
 		CE05591F1608D5EB00EB1960 /* CalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05591E1608D5EB00EB1960 /* CalculatorTests.m */; };
+		CE71D2C51617EFC9005E6AA5 /* calcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE71D2C41617EFC9005E6AA5 /* calcEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		CE05591B1608D5EB00EB1960 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE05591D1608D5EB00EB1960 /* CalculatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorTests.h; sourceTree = "<group>"; };
 		CE05591E1608D5EB00EB1960 /* CalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorTests.m; sourceTree = "<group>"; };
+		CE71D2C31617EFC9005E6AA5 /* calcEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calcEngine.h; sourceTree = "<group>"; };
+		CE71D2C41617EFC9005E6AA5 /* calcEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calcEngine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 			children = (
 				CE0558FF1608D5EA00EB1960 /* AppDelegate.h */,
 				CE0559001608D5EA00EB1960 /* AppDelegate.m */,
+				CE71D2C31617EFC9005E6AA5 /* calcEngine.h */,
+				CE71D2C41617EFC9005E6AA5 /* calcEngine.m */,
 				CE0559021608D5EA00EB1960 /* MainStoryboard_iPhone.storyboard */,
 				CE0559051608D5EA00EB1960 /* MainStoryboard_iPad.storyboard */,
 				CE0559081608D5EA00EB1960 /* ViewController.h */,
@@ -265,6 +270,7 @@
 				CE0558FD1608D5EA00EB1960 /* main.m in Sources */,
 				CE0559011608D5EA00EB1960 /* AppDelegate.m in Sources */,
 				CE05590A1608D5EA00EB1960 /* ViewController.m in Sources */,
+				CE71D2C51617EFC9005E6AA5 /* calcEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +454,7 @@
 				CE0559241608D5EB00EB1960 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE0559251608D5EB00EB1960 /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +463,7 @@
 				CE0559271608D5EB00EB1960 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

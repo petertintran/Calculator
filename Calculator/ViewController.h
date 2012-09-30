@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "calcEngine.h"
 
 @interface ViewController : UIViewController
+{
+    calcEngine* calcEngine;
+}
 
 @property (strong, nonatomic) IBOutlet UILabel *calcDisplay;
 
+//Numeric Buttons
 - (IBAction) button0:(id)sender;
 - (IBAction) button1:(id)sender;
 - (IBAction) button2:(id)sender;
@@ -23,13 +28,16 @@
 - (IBAction) button8:(id)sender;
 - (IBAction) button9:(id)sender;
 
+//Mathematical Calculation Buttons
 - (IBAction) buttonPlus:(id)sender;
 - (IBAction) buttonMinus:(id)sender;
 - (IBAction) buttonMultiply:(id)sender;
 - (IBAction) buttonDivide:(id)sender;
+- (IBAction) buttonRoot:(id)sender;
+
+//Misc Buttons
 - (IBAction) buttonEqual:(id)sender;
 - (IBAction) buttonDecimal:(id)sender;
-- (IBAction) buttonRoot:(id)sender;
 - (IBAction) buttonClear:(id)sender;
 - (IBAction) buttonPosNeg:(id)sender;
 
