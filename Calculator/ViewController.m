@@ -16,9 +16,10 @@
 
 @implementation ViewController
 
+
+@synthesize calcEngine = _calcEngine;
 @synthesize calcDisplay = _calcDisplay;
 
-double storedValue = 0;
 double currentValue = 0;
 
 bool statePlus = false;
@@ -28,7 +29,6 @@ bool stateDivide = false;
 bool stateReadyCalc = false;
 
 bool multCalc = false;
-
 
 
 
@@ -94,90 +94,116 @@ bool multCalc = false;
 
 - (IBAction)buttonPlus:(id)sender
 {
-    if(statePlus == true && stateReadyCalc == true)
+    if(statePlus != true && stateReadyCalc != true)
     {
-        storedValue = storedValue + currentValue;
-        currentValue = 0;
-        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", storedValue];
-        multCalc = true;
-    }
-    else
-    {
+        self.calcEngine.currentOperation = '+';
         statePlus = true;
         stateMinus = stateMultiply = stateDivide = false;
+        self.calcEngine.storedOperand = currentValue;
         if(multCalc == false)
         {
-            storedValue = currentValue;
+            self.calcEngine.storedOperand = currentValue;
         }
+        [self.calcEngine calculations];
         currentValue = 0;
         stateReadyCalc = true;
     }
+    else
+    {
+        self.calcEngine.currentOperand = currentValue;
+        [self.calcEngine calculations];
+        self.calcEngine.currentOperation = '+';
         
+        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", self.calcEngine.storedOperand];
+        currentValue = 0;
+        multCalc = true;
+    }
 }
 
 - (IBAction)buttonMinus:(id)sender
 {
-    if(stateMinus == true && stateReadyCalc == true)
+    if(stateMinus != true && stateReadyCalc != true)
     {
-        storedValue = storedValue - currentValue;
+        self.calcEngine.currentOperation = '-';
+        stateMinus = true;
+        statePlus = stateMultiply = stateDivide = false;
+        self.calcEngine.storedOperand = currentValue;
+        if(multCalc == false)
+        {
+            self.calcEngine.storedOperand = currentValue;
+            
+        }
+        [self.calcEngine calculations];
         currentValue = 0;
-        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", storedValue];
-        multCalc = true;
+        stateReadyCalc = true;
     }
     else
     {
-        stateMinus = true;
-        statePlus = stateMultiply = stateDivide = false;
-        if(multCalc == false)
-        {
-            storedValue = currentValue;
-        }
+        self.calcEngine.currentOperand = currentValue;
+        [self.calcEngine calculations];
+        self.calcEngine.currentOperation = '-';
+
+        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", self.calcEngine.storedOperand];
         currentValue = 0;
-        stateReadyCalc = true;
+        multCalc = true;
     }
 }
 
 - (IBAction)buttonMultiply:(id)sender
 {
-    if(stateMultiply == true && stateReadyCalc == true)
+    if(stateMultiply != true && stateReadyCalc != true)
     {
-        storedValue = storedValue * currentValue;
+        self.calcEngine.currentOperation = '*';
+        stateMultiply = true;
+        statePlus = stateMinus = stateDivide = false;
+        self.calcEngine.storedOperand = currentValue;
+        if(multCalc == false)
+        {
+            self.calcEngine.storedOperand = currentValue;
+            
+        }
+        //[self.calcEngine calculations];
         currentValue = 0;
-        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", storedValue];
-        multCalc = true;
+        stateReadyCalc = true;
     }
     else
     {
-        stateMultiply = true;
-        statePlus = stateMinus = stateDivide = false;
-        if(multCalc == false)
-        {
-            storedValue = currentValue;
-        }
+        self.calcEngine.currentOperand = currentValue;
+        [self.calcEngine calculations];
+        self.calcEngine.currentOperation = '*';
+        
+        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", self.calcEngine.storedOperand];
         currentValue = 0;
-        stateReadyCalc = true;
+        multCalc = true;
     }
 }
 
 - (IBAction)buttonDivide:(id)sender
 {
-    if(stateDivide == true && stateReadyCalc == true)
+    if(stateDivide != true && stateReadyCalc != true)
     {
-        storedValue = storedValue / currentValue;
+        self.calcEngine.currentOperation = '/';
+        stateDivide = true;
+        statePlus = stateMinus = stateMultiply = false;
+        self.calcEngine.storedOperand = currentValue;
+        if(multCalc == false)
+        {
+            self.calcEngine.storedOperand = currentValue;
+            
+        }
+        //[self.calcEngine calculations];
         currentValue = 0;
-        _calcDisplay.text = [NSString stringWithFormat:@"%f", storedValue];
-        multCalc = true;
+        stateReadyCalc = true;
     }
     else
     {
-        stateDivide = true;
-        statePlus = stateMinus = stateMultiply = false;
-        if(multCalc == false)
-        {
-            storedValue = currentValue;
-        }
+        self.calcEngine.currentOperand = currentValue;
+        [self.calcEngine calculations];
+        self.calcEngine.currentOperation = '/';
+        
+        _calcDisplay.text = [NSString stringWithFormat:@"%f", self.calcEngine.storedOperand];
         currentValue = 0;
-        stateReadyCalc = true;
+        multCalc = true;
     }
 }
 
@@ -195,7 +221,22 @@ bool multCalc = false;
 {}
 
 - (IBAction)buttonClear:(id)sender
-{}
+{
+    currentValue = 0;
+    _calcDisplay.text = [NSString stringWithFormat:@"0"];
+    self.calcEngine.storedOperand = 0;
+    self.calcEngine.currentOperation = '\0';
+    self.calcEngine.currentOperand = 0;
+    self.calcEngine.incomingOperation = '\0';
+    
+    statePlus = false;
+    stateMinus = false;
+    stateMultiply = false;
+    stateDivide = false;
+    stateReadyCalc = false;
+    
+    multCalc = false;
+}
 
 
 
@@ -203,6 +244,11 @@ bool multCalc = false;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _calcEngine = [[calcEngine alloc] init];
+    self.calcEngine.storedOperand = 0;
+    self.calcEngine.currentOperation = '\0';
+    self.calcEngine.currentOperand = 0;
+    self.calcEngine.incomingOperation = '\0';
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

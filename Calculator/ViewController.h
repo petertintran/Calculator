@@ -11,8 +11,11 @@
 
 @interface ViewController : UIViewController
 {
-    calcEngine* calcEngine;
+
+    
 }
+
+@property calcEngine *calcEngine;
 
 @property (strong, nonatomic) IBOutlet UILabel *calcDisplay;
 

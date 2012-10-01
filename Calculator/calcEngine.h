@@ -9,5 +9,22 @@
 #import <Foundation/Foundation.h>
 
 @interface calcEngine : NSObject
+{
+    double storedOperand;
+    double currentOperand;
+    
+    char currentOperation;
+    char incomingOperation;
+    
+}
+
+@property (assign) double storedOperand;
+@property (assign) double currentOperand;
+@property (assign) char currentOperation;
+@property (assign) char incomingOperation;
+
+- (void) calculations;
+
+
 
 @end
