@@ -177,7 +177,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w65-v5-5ZG">
-                                <rect key="frame" x="243" y="242" width="60" height="60"/>
+                                <rect key="frame" x="243" y="244" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="-">
@@ -237,7 +237,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pIx-3H-9cj">
-                                <rect key="frame" x="243" y="310" width="60" height="60"/>
+                                <rect key="frame" x="243" y="312" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="+">
@@ -323,6 +323,10 @@
                         <color key="backgroundColor" red="0.34904255839999998" green="0.65182971219999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="buttonDivide" destination="pIx-3H-9cj" id="pS4-VP-hCD"/>
+                        <outlet property="buttonMinus" destination="w65-v5-5ZG" id="rhS-9h-EcD"/>
+                        <outlet property="buttonMultiply" destination="aAx-7S-dVG" id="CdP-39-9Ay"/>
+                        <outlet property="buttonPlus" destination="pIx-3H-9cj" id="tr8-bS-vh3"/>
                         <outlet property="calcDisplay" destination="UyZ-Zh-oz9" id="WGz-af-y8C"/>
                     </connections>
                 </viewController>
@@ -353,6 +357,11 @@
                 <relationship kind="action" name="buttonPlus:"/>
                 <relationship kind="action" name="buttonPosNeg:"/>
                 <relationship kind="action" name="buttonRoot:"/>
+                <relationship kind="outlet" name="_buttonDivide" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buttonDivide" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buttonMinus" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buttonMultiply" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buttonPlus" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="calcDisplay" candidateClass="UILabel"/>
             </relationships>
         </class>

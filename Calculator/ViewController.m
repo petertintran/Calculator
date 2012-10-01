@@ -20,6 +20,11 @@
 @synthesize calcEngine = _calcEngine;
 @synthesize calcDisplay = _calcDisplay;
 
+@synthesize buttonDivide = _buttonDivide;
+@synthesize buttonPlus = _buttonPlus;
+@synthesize buttonMinus = _buttonMinus;
+@synthesize buttonMultiply = _buttonMultiply;
+
 double currentValue = 0;
 
 bool statePlus = false;
@@ -110,6 +115,7 @@ bool multCalc = false;
     }
     else
     {
+        statePlus = stateMultiply = stateDivide = false;
         self.calcEngine.currentOperand = currentValue;
         [self.calcEngine calculations];
         self.calcEngine.currentOperation = '+';
@@ -118,6 +124,7 @@ bool multCalc = false;
         currentValue = 0;
         multCalc = true;
     }
+    [self operationsCheck];
 }
 
 - (IBAction)buttonMinus:(id)sender
@@ -139,6 +146,7 @@ bool multCalc = false;
     }
     else
     {
+        stateMinus = stateMultiply = stateDivide = false;
         self.calcEngine.currentOperand = currentValue;
         [self.calcEngine calculations];
         self.calcEngine.currentOperation = '-';
@@ -147,6 +155,7 @@ bool multCalc = false;
         currentValue = 0;
         multCalc = true;
     }
+    [self operationsCheck];
 }
 
 - (IBAction)buttonMultiply:(id)sender
@@ -172,7 +181,7 @@ bool multCalc = false;
         [self.calcEngine calculations];
         self.calcEngine.currentOperation = '*';
         
-        _calcDisplay.text = [NSString stringWithFormat:@"%.0f", self.calcEngine.storedOperand];
+        _calcDisplay.text = [NSString stringWithFormat:@"%f", self.calcEngine.storedOperand];
         currentValue = 0;
         multCalc = true;
     }
@@ -180,10 +189,12 @@ bool multCalc = false;
 
 - (IBAction)buttonDivide:(id)sender
 {
+
     if(stateDivide != true && stateReadyCalc != true)
     {
         self.calcEngine.currentOperation = '/';
         stateDivide = true;
+
         statePlus = stateMinus = stateMultiply = false;
         self.calcEngine.storedOperand = currentValue;
         if(multCalc == false)
@@ -205,6 +216,7 @@ bool multCalc = false;
         currentValue = 0;
         multCalc = true;
     }
+    [self operationsCheck];
 }
 
 - (IBAction)buttonEqual:(id)sender
@@ -224,6 +236,7 @@ bool multCalc = false;
 {
     currentValue = 0;
     _calcDisplay.text = [NSString stringWithFormat:@"0"];
+    _buttonDivide.backgroundColor = nil;
     self.calcEngine.storedOperand = 0;
     self.calcEngine.currentOperation = '\0';
     self.calcEngine.currentOperand = 0;
@@ -239,12 +252,36 @@ bool multCalc = false;
 }
 
 
+- (void) operationsCheck
+{
+    if(statePlus == true)
+    {
+        _buttonPlus.backgroundColor = [UIColor grayColor];
+        
+    }
+    else
+    {
+        _buttonPlus.backgroundColor = nil;
+    }
+    if(stateMinus == true)
+    {
+        _buttonMinus.backgroundColor = [UIColor grayColor];
+        
+    }
+    else
+    {
+        _buttonMinus.backgroundColor = nil;
+    }
 
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _calcEngine = [[calcEngine alloc] init];
+    
+    _buttonDivide.backgroundColor = nil;
+    
     self.calcEngine.storedOperand = 0;
     self.calcEngine.currentOperation = '\0';
     self.calcEngine.currentOperand = 0;
@@ -255,6 +292,10 @@ bool multCalc = false;
 - (void)viewDidUnload
 {
     [self setCalcDisplay:nil];
+    [self setButtonDivide:nil];
+    [self setButtonPlus:nil];
+    [self setButtonMinus:nil];
+    [self setButtonMultiply:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

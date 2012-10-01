@@ -12,12 +12,17 @@
 @interface ViewController : UIViewController
 {
 
-    
 }
 
 @property calcEngine *calcEngine;
 
 @property (strong, nonatomic) IBOutlet UILabel *calcDisplay;
+@property (strong, nonatomic) IBOutlet UIButton *buttonDivide;
+@property (strong, nonatomic) IBOutlet UIButton *buttonPlus;
+@property (strong, nonatomic) IBOutlet UIButton *buttonMinus;
+@property (strong, nonatomic) IBOutlet UIButton *buttonMultiply;
+
+
 
 //Numeric Buttons
 - (IBAction) button0:(id)sender;
@@ -44,7 +49,7 @@
 - (IBAction) buttonClear:(id)sender;
 - (IBAction) buttonPosNeg:(id)sender;
 
-
+- (void) operationsCheck;
 
 
 @end
