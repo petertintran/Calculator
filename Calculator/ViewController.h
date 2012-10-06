@@ -1,8 +1,12 @@
+//  Name: Peter Tran
+//  Course: CPSC 491T
+//  Due Date: 10/01/2012
+//  Assignment: #3 - Calculator
 //
 //  ViewController.h
 //  Calculator
 //
-//  Created by Lion User on 18/09/2012.
+//  Created by Peter tran on 18/09/2012.
 //  Copyright (c) 2012 Tran.Peter. All rights reserved.
 //
 
@@ -11,17 +15,17 @@
 
 @interface ViewController : UIViewController
 {
-
+    
 }
 
 @property calcEngine *calcEngine;
 
 @property (strong, nonatomic) IBOutlet UILabel *calcDisplay;
-@property (strong, nonatomic) IBOutlet UIButton *buttonDivide;
+
 @property (strong, nonatomic) IBOutlet UIButton *buttonPlus;
 @property (strong, nonatomic) IBOutlet UIButton *buttonMinus;
 @property (strong, nonatomic) IBOutlet UIButton *buttonMultiply;
-
+@property (strong, nonatomic) IBOutlet UIButton *buttonDivide;
 
 
 //Numeric Buttons
@@ -49,7 +53,6 @@
 - (IBAction) buttonClear:(id)sender;
 - (IBAction) buttonPosNeg:(id)sender;
 
-- (void) operationsCheck;
 
 
 @end
